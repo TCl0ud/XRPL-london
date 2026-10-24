@@ -48,6 +48,10 @@ python3.14 -m venv .venv314
 # Variant: also apply the relay look-alike penalty to Owen's detector before blending
 .venv314/bin/python blend.py --inputs outputs/submission.csv outputs/new/predictions.csv \
                              --weights 0.75 0.25 --relay-penalty 0.5 --out outputs/final_relay.csv
+# Variant: three models (adds Extra Trees on Owen's detector features, ~15 s)
+.venv314/bin/python third_model.py                           # -> outputs/new/extra_trees.csv
+.venv314/bin/python blend.py --inputs outputs/submission.csv outputs/new/predictions.csv outputs/new/extra_trees.csv \
+                             --weights 0.70 0.20 0.10 --out outputs/final_3models.csv
 ```
 
 Burst smoothing (`xrpl-detector/predict.py`) is switched off (`SMOOTH_OWN_WEIGHT = 1.0` in `xrpl-detector/config.py`):
