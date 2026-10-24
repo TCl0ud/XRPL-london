@@ -1,0 +1,9 @@
+# Versions that produced the 66.8 leaderboard run (Python 3.9.6, Apple Silicon Mac)
+pandas==2.3.3
+numpy==2.0.2
+scikit-learn==1.6.1
+networkx==3.2.1
+matplotlib==3.9.4
+pyarrow==21.0.0
+joblib==1.5.3
+scipy==1.13.1

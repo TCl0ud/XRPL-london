@@ -2,7 +2,7 @@
 
     python run.py --train data/train --test data/test
 
-Writes to outputs/: predictions.csv (upload this), cv_report.txt, alerts.json, mules.csv,
+Writes to outputs/new/: predictions.csv (upload this), cv_report.txt, alerts.json, mules.csv,
 cases.md and cases.json.
 """
 import argparse
@@ -25,7 +25,7 @@ def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--train", default="data/train")
     ap.add_argument("--test", default="data/test")
-    ap.add_argument("--out", default="outputs")
+    ap.add_argument("--out", default="outputs/new")
     ap.add_argument("--skip-cv", action="store_true", help="skip cross-validation (faster)")
     a = ap.parse_args()
     out = Path(a.out)

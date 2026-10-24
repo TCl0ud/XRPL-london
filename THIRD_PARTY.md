@@ -1,10 +1,12 @@
 # What we did not write ourselves
 
-- **Organiser material**: the synthetic dataset and its README. `detector/data.py` decodes amounts
-  and values them in USD the way the organisers' README and `payments.py` describe (first transfer
-  leg = actual source cost, hourly reference price from `market_rates.csv`); no organiser code is copied.
-- **Libraries** (`requirements.txt`): pandas, NumPy, PyArrow, scikit-learn
-  (`HistGradientBoostingClassifier`, `StratifiedGroupKFold`, `average_precision_score`) and SciPy
-  (`connected_components`, `rankdata`).
+- **Organiser material**: the synthetic dataset, its README, the starter notebook and the
+  organisers' `payments.py` loader (none of these are included). Amount decoding and hourly USD
+  valuation in `detector/data.py` and `xrpl-detector/aml_ranker/data.py` follow `payments.py` and
+  the organisers' README.
+- **Libraries** (`requirements.txt`, `xrpl-detector/requirements.txt`): NumPy, pandas, PyArrow,
+  scikit-learn (`HistGradientBoostingClassifier`, `StratifiedGroupKFold`, metrics), SciPy
+  (`connected_components`, `rankdata`), NetworkX, Matplotlib, joblib.
 - **AI assistance**: the code and documentation were written with Claude (Anthropic) via Claude Code.
+  The team members' prompts and what they produced are in [`chat-history/`](chat-history/README.md).
 - No pre-trained models, external data, external labels or outside services are used.
