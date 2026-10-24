@@ -27,5 +27,6 @@ if __name__ == "__main__":
     et = ExtraTreesClassifier(n_estimators=400, min_samples_leaf=3, max_features=0.3,
                               class_weight="balanced_subsample", n_jobs=-1, random_state=0).fit(X, y)
     Path(a.out).parent.mkdir(parents=True, exist_ok=True)
+    et.n_jobs = 1  # single-threaded prediction sums the trees in a fixed order (exactly reproducible)
     pd.DataFrame({"TRANSACTION_HASH": test.hash, "score": et.predict_proba(Xt)[:, 1]}).to_csv(a.out, index=False)
     print(f"{len(test):,} rows -> {a.out}")
