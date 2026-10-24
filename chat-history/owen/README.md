@@ -8,11 +8,11 @@ Disclosure for the *Decode & Detect* terms (clauses 3.3 and 3.4): which AI was u
 |---|---|
 | Model | Claude Opus 5.5 (`claude-opus-5-5`), Anthropic |
 | Tool | Claude Code (command-line agent), default settings |
-| Used by | Owen, on 24 October 2026 (one session) |
+| Used by | Owen, on 24 October 2026 (two sessions) |
 | Used for | Environment setup, reading the organisers' files, writing and editing code, testing, git commits and pushes, documentation, and explaining concepts |
 | Used at runtime? | **No.** The submitted code never calls an LLM. Predictions are fully reproducible without any AI service |
 
-Other team members also used Claude via Claude Code (see `THIRD_PARTY.md` and the `Co-Authored-By` lines in the git history). This log covers Owen's session only.
+Other team members also used Claude via Claude Code (see `THIRD_PARTY.md` and the `Co-Authored-By` lines in the git history). This log covers Owen's sessions only.
 
 ## What Claude wrote or changed
 
@@ -26,6 +26,8 @@ Other team members also used Claude via Claude Code (see `THIRD_PARTY.md` and th
 | `4a66fec` | `outputs/submission.csv` in the upload format, and its format check in `schemas.py` |
 | `003b4e2` | Removed `alert_tracker.py` (team decision to keep one alert system) |
 | `217c5c8` | Alerts: flag the top 1% of scores and group by 10-minute bursts (`config.py`, `trail_tracker.py`) |
+| `634c3bb` | Team name (Pookies of The Caribbean) as the `README.md` title, and a Team section listing the members (session 2) |
+| this commit | Session 2 added to this log |
 
 Analyses run but not committed: comparison of the two alert groupings and of burst windows from 3 to 60 minutes, scored against the training labels with out-of-fold predictions.
 
@@ -85,6 +87,15 @@ Prompts are copied as typed, including typos. Long pasted material is summarised
 | 48 | can we js remove the two files so the model is public | Explained git history and the fresh-repo option |
 | 49 | where did it say we cant publish the data sets | Quoted the relevant clauses |
 | 50 | can u keep check all the promts from today and write it a document | Wrote this file (then renamed it and anonymised names) |
+| | **Session 2** | |
+| 51 | can u see the london repo , i neeed to add the team name and people name | Searched the laptop; the repo wasn't cloned there; asked for its URL |
+| 52 | https://github.com/TCl0ud/XRPL-london.git | Cloned the repo; read the README and team notes; proposed a Team section |
+| 53 | Pookies of The Caribbean | Set the team name as the `README.md` title |
+| 54 | [teammate's name] | Added a Team section to `README.md` |
+| 55 | [teammate's name] | Added them to the Team section |
+| 56 | [teammate's name], change it to this | Updated their name in the Team section |
+| 57 | commit and push | Committed and pushed `634c3bb` |
+| 58 | add it | Added session 2 to this log |
 
 ## Reproducibility notes
 
