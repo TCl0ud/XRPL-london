@@ -1,4 +1,4 @@
-# xrpl-owen-hackathon
+# Pookies of The Caribbean — XRPL hackathon entry
 
 A *Decode & Detect* entry (leaderboard **67.8**). It gives every payment on the synthetic XRPL
 ledger a suspicion score from 0 to 1, groups the riskiest payments into alerts, names likely money
@@ -14,6 +14,15 @@ The final score blends two independent detectors by weighted average rank (75% t
 | Weighted average rank, 0.65 / 0.35 | | 67.6 |
 | Weighted average rank, 0.75 / 0.25, before burst smoothing | | 67.7 |
 | **Weighted average rank, 0.75 / 0.25, with burst smoothing (`blend.py`, submitted)** | | **67.8** |
+
+## Team
+
+**Pookies of The Caribbean**
+
+- Owen Leung
+- Jesang Limbu
+- Hemayu Vikeekumar
+- Mohamed Mustafa Avoor
 
 ## Reproduce the predictions CSV
 
