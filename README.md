@@ -8,12 +8,13 @@ The final score blends two independent detectors by weighted average rank (75% t
 
 | System | Folder | Leaderboard alone |
 |---|---|---|
-| Team pipeline (two-stage ranker + mule network signal + burst smoothing) | `xrpl-detector/` | 66.8 before smoothing |
+| Team pipeline (two-stage ranker + mule network signal + relay look-alike penalty) | `xrpl-detector/` | 67.0 (66.8 without the relay penalty) |
 | Owen's detector (trails, mules, limit dodging, fake trading) | `detector/`, `run.py` | 64.3 |
 | Average rank, equal weights (`blend.py`) | | 67.3 |
 | Weighted average rank, 0.65 / 0.35 | | 67.6 |
 | Weighted average rank, 0.75 / 0.25, before burst smoothing | | 67.7 |
-| **Weighted average rank, 0.75 / 0.25, with burst smoothing (`blend.py`, submitted)** | | **67.8** |
+| Weighted average rank, 0.75 / 0.25, with burst smoothing | | 67.8 |
+| **Weighted average rank, 0.75 / 0.25, with relay penalty, no smoothing (`blend.py`)** | | not yet scored |
 
 ## Team
 
@@ -46,8 +47,8 @@ python3.14 -m venv .venv314
                              --weights 0.75 0.25 --out outputs/final.csv
 ```
 
-Burst smoothing (`xrpl-detector/predict.py`, `SMOOTH_OWN_WEIGHT = 0.5` in `xrpl-detector/config.py`) pulls each
-payment's score halfway towards the average of its 3- and 10-minute burst.
+Burst smoothing (`xrpl-detector/predict.py`) is switched off (`SMOOTH_OWN_WEIGHT = 1.0` in `xrpl-detector/config.py`):
+at 0.5 it scored 66.0 for the team pipeline alone vs 66.8 without it.
 
 The upload file is **`outputs/final.csv`** (`TRANSACTION_HASH,score`, one row per test transaction).
 Measured on Apple Silicon Macs (M4 16 GB and A18 Pro 8 GB), CPU only. Both systems use fixed

@@ -23,8 +23,9 @@ SUBMISSION_VARIANTS = {                           # same format, one per scoring
     "blend": f"{OUT_DIR}/submission_blend.csv",     # average rank of the two
     "specialist": f"{OUT_DIR}/submission_specialist.csv",  # blend + 5% medium specialist
     "mule": f"{OUT_DIR}/submission_mule.csv",              # blend + 20% mule network signal (aml_ranker/mule.py)
+    "mule_relay": f"{OUT_DIR}/submission_mule_relay.csv",  # mule x relay look-alike penalty (aml_ranker/relay.py)
 }
-DEFAULT_SCORE = "mule"       # which variant becomes `probability` and submission.csv
+DEFAULT_SCORE = "mule_relay"     # which variant becomes `probability` and submission.csv
 ALERTS_JSON = f"{OUT_DIR}/alerts.json"           # trail_tracker.py -> alert_ranker.py
 RANKED_JSON = f"{OUT_DIR}/ranked_alerts.json"    # alert_ranker.py  -> case_writer.py
 SUMMARIES_JSON = f"{OUT_DIR}/summaries.json"
@@ -44,7 +45,7 @@ EXCHANGE_MIN_TAGS = 20
 # Top 1% + 10-min bursts tested best on train labels: no case split across alerts, 99% purity.
 FLAG_TOP_SHARE = 0.01        # flag the highest-scored 1% of payments (the site's review budget)
 BURST_LEVEL = "b10m"         # payments linked by chain / fan-out / fan-in within 10 min
-SMOOTH_OWN_WEIGHT = 0.5
+SMOOTH_OWN_WEIGHT = 1.0      # 1.0 = no burst smoothing (0.5 scored 66.0 vs 66.8 without it)
 MIN_ALERT_TXS = 2            # an alert needs at least this many flagged payments
 
 TOP_N_SUMMARIES = 5
