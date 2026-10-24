@@ -14,7 +14,7 @@ The final score blends two independent detectors by weighted average rank (75% t
 | Weighted average rank, 0.65 / 0.35 | | 67.6 |
 | Weighted average rank, 0.75 / 0.25, before burst smoothing | | 67.7 |
 | Weighted average rank, 0.75 / 0.25, with burst smoothing | | 67.8 |
-| **Weighted average rank, 0.75 / 0.25, with relay penalty, no smoothing (`blend.py`)** | | not yet scored |
+| **Weighted average rank, 0.75 / 0.25, with relay penalty, no smoothing (`blend.py`, submitted)** | | **67.8** |
 
 ## Team
 
