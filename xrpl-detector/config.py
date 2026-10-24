@@ -44,6 +44,7 @@ EXCHANGE_MIN_TAGS = 20
 # Top 1% + 10-min bursts tested best on train labels: no case split across alerts, 99% purity.
 FLAG_TOP_SHARE = 0.01        # flag the highest-scored 1% of payments (the site's review budget)
 BURST_LEVEL = "b10m"         # payments linked by chain / fan-out / fan-in within 10 min
+SMOOTH_OWN_WEIGHT = 0.5
 MIN_ALERT_TXS = 2            # an alert needs at least this many flagged payments
 
 TOP_N_SUMMARIES = 5
