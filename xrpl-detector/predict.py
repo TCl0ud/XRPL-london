@@ -42,6 +42,15 @@ def predict(folder):
         assert df[f"score_{name}"].notna().all(), "every payment needs a score"
     df["probability"] = df[f"score_{config.DEFAULT_SCORE}"]
     df["is_suspicious"] = (df["probability"] >= bundle["threshold"]).astype(int)
+    # Burst smoothing: payments in one operation share a label, so pull each
+    # score towards its burst's average (payments with no burst keep their own)
+    own = df["probability"]
+    b3_mean = df.groupby("b3m_id")["probability"].transform("mean").fillna(own)
+    b10_mean = df.groupby("b10m_id")["probability"].transform("mean").fillna(own)
+    b3_max = df.groupby("b3m_id")["probability"].transform("max").fillna(own)
+    burst = 0.6 * b3_mean + 0.2 * b10_mean + 0.2 * b3_max
+    df["probability"] = (config.SMOOTH_OWN_WEIGHT * own
+                         + (1 - config.SMOOTH_OWN_WEIGHT) * burst).clip(0, 1)
     return df
 
 
