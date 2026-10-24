@@ -18,7 +18,7 @@ The final score blends two independent detectors by weighted average rank (75% t
 ## Team
 
 **Pookies of The Caribbean**
-
+Team leader - Owen
 - Owen Leung
 - Jesang Limbu
 - Hemayu Vikeekumar
