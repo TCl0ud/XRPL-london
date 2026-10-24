@@ -39,7 +39,9 @@ def predict(folder):
     near = neighbour_max(variants["blend"], pay.sender.to_numpy(), pay.receiver.to_numpy(), pay.t.to_numpy())
     variants["mule"] = with_mule(variants["blend"], near)
     if "relay" in bundle:  # models trained before the relay classifier existed have none
-        variants["mule_relay"] = with_relay_penalty(variants["mule"], bundle["relay"].predict(X[bundle["features"]]))
+        p_relay = bundle["relay"].predict(X[bundle["features"]])
+        variants["mule_relay"] = with_relay_penalty(variants["mule"], p_relay)
+        df["p_relay"] = df["hash"].map(pd.Series(p_relay, index=X["TRANSACTION_HASH"]))  # used by blend.py
     for name, scores in variants.items():
         df[f"score_{name}"] = df["hash"].map(pd.Series(scores, index=X["TRANSACTION_HASH"])).clip(0, 1)
         assert df[f"score_{name}"].notna().all(), "every payment needs a score"

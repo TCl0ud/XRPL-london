@@ -45,6 +45,9 @@ python3.14 -m venv .venv314
 # 3. Blend (75% team pipeline, 25% Owen's detector)
 .venv314/bin/python blend.py --inputs outputs/submission.csv outputs/new/predictions.csv \
                              --weights 0.75 0.25 --out outputs/final.csv
+# Variant: also apply the relay look-alike penalty to Owen's detector before blending
+.venv314/bin/python blend.py --inputs outputs/submission.csv outputs/new/predictions.csv \
+                             --weights 0.75 0.25 --relay-penalty 0.5 --out outputs/final_relay.csv
 ```
 
 Burst smoothing (`xrpl-detector/predict.py`) is switched off (`SMOOTH_OWN_WEIGHT = 1.0` in `xrpl-detector/config.py`):
