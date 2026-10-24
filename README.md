@@ -1,17 +1,18 @@
 # xrpl-owen-hackathon
 
-A *Decode & Detect* entry (leaderboard **67.6**). It gives every payment on the synthetic XRPL
+A *Decode & Detect* entry (leaderboard **67.7**). It gives every payment on the synthetic XRPL
 ledger a suspicion score from 0 to 1, groups the riskiest payments into alerts, names likely money
 mules and writes a case report for each top alert.
 
-The final score blends two independent detectors by weighted average rank (65% team pipeline, 35% Owen's detector):
+The final score blends two independent detectors by weighted average rank (75% team pipeline, 25% Owen's detector):
 
 | System | Folder | Leaderboard alone |
 |---|---|---|
 | Team pipeline (two-stage ranker + mule network signal) | `xrpl-detector/` | 66.8 |
 | Owen's detector (trails, mules, limit dodging, fake trading) | `detector/`, `run.py` | 64.3 |
 | Average rank, equal weights (`blend.py`) | | 67.3 |
-| **Weighted average rank, 0.65 / 0.35 (`blend.py`, submitted)** | | **67.6** |
+| Weighted average rank, 0.65 / 0.35 | | 67.6 |
+| **Weighted average rank, 0.75 / 0.25 (`blend.py`, submitted)** | | **67.7** |
 
 ## Reproduce the predictions CSV
 
@@ -30,9 +31,9 @@ python3.14 -m venv .venv314
 .venv314/bin/pip install -r requirements.txt
 .venv314/bin/python run.py                                  # -> outputs/new/predictions.csv
 
-# 3. Blend (65% team pipeline, 35% Owen's detector)
+# 3. Blend (75% team pipeline, 25% Owen's detector)
 .venv314/bin/python blend.py --inputs outputs/submission.csv outputs/new/predictions.csv \
-                             --weights 0.65 0.35 --out outputs/final.csv
+                             --weights 0.75 0.25 --out outputs/final.csv
 ```
 
 The upload file is **`outputs/final.csv`** (`TRANSACTION_HASH,score`, one row per test transaction).
