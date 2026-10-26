@@ -1,4 +1,4 @@
-# Versions that produced the 66.8 leaderboard run (Python 3.9.6, Apple Silicon Mac)
+# Versions that produced the 67.0 leaderboard run (Python 3.9.6, Apple Silicon Mac)
 pandas==2.3.3
 numpy==2.0.2
 scikit-learn==1.6.1

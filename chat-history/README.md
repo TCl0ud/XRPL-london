@@ -12,7 +12,7 @@ A `sessions/` folder holds full transcripts where they were exported.
 | Team member | Log | Sessions |
 |---|---|---|
 | Jesang | [`jesang/README.md`](jesang/README.md) | 9, with transcripts in [`jesang/sessions/`](jesang/sessions/) |
-| Owen | [`owen/README.md`](owen/README.md) | 2 (no transcripts) |
+| Owen | [`owen/README.md`](owen/README.md) | 3 (no transcripts) |
 
 ## Rules for every log
 

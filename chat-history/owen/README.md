@@ -8,7 +8,7 @@ Disclosure for the *Decode & Detect* terms (clauses 3.3 and 3.4): which AI was u
 |---|---|
 | Model | Claude Opus 5.5 (`claude-opus-5-5`), Anthropic |
 | Tool | Claude Code (command-line agent), default settings |
-| Used by | Owen, on 24 October 2026 (two sessions) |
+| Used by | Owen, on 24 October 2026 (two sessions) and 26 October 2026 (documentation after the event) |
 | Used for | Environment setup, reading the organisers' files, writing and editing code, testing, git commits and pushes, documentation, and explaining concepts |
 | Used at runtime? | **No.** The submitted code never calls an LLM. Predictions are fully reproducible without any AI service |
 
@@ -96,6 +96,8 @@ Prompts are copied as typed, including typos. Long pasted material is summarised
 | 56 | [teammate's name], change it to this | Updated their name in the Team section |
 | 57 | commit and push | Committed and pushed `634c3bb` |
 | 58 | add it | Added session 2 to this log |
+| | **Session 3** (26 October, after the event; documentation only, no code or score changes) | |
+| 59 | ok so im the leader in the team at the end, make sure to document stuff better on the london repo too, look ath the repo aml model xrpl to see the doucmenting | Compared the docs with the team repo; added `REPORT.md`; rewrote `README.md` (team leader, pinned versions, upload file, outputs, layout); brought `TEAM_NOTES.md`, `xrpl-detector/README.md` and `xrpl-detector/requirements.txt` up to the final scores; added session 3 to this log |
 
 ## Reproducibility notes
 

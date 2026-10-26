@@ -61,8 +61,14 @@ python run_pipeline.py data/train  # everything on training data (demo/debug)
 - `model.py`: scikit-learn `HistGradientBoostingClassifier`s (3 seeds). Stage 2 adds
   how suspicious each payment's episode-mates look according to stage 1, so a planted
   pattern lifts all of its payments together.
-  The uploaded score is the **blend**: the average rank of stage 1 and stage 2 (65.9 on
-  the leaderboard, vs 65.6 for stage 1 and 65.4 for stage 2 alone).
+  The **blend** is the average rank of stage 1 and stage 2 (65.9 on the leaderboard, vs
+  65.6 for stage 1 and 65.4 for stage 2 alone).
+- `mule.py`: the **mule network signal**. Each payment gets the highest blend score among the
+  other payments touching the same sender or receiver within ±1 hour, mixed in at 20% (66.8).
+- `relay.py`: the **relay look-alike penalty**. A classifier predicts whether a payment belongs
+  to a relay cohort (`p_relay`); the score becomes mule score × (1 − 0.5 × `p_relay`) (67.0).
+  This is the default (`DEFAULT_SCORE = "mule_relay"` in `config.py`) and the team pipeline's
+  part of the final blend (see the top-level `README.md`).
   A small **medium specialist** (medium positives vs all negatives) can be mixed in at 5%:
   CV AP 57.4 vs 55.7 for the blend. It's written as `submission_specialist.csv`; switch
   the default with `DEFAULT_SCORE` in `config.py`.

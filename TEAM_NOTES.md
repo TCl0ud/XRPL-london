@@ -28,6 +28,8 @@ Handover for the Decode & Detect hackathon. Deadline: **16:00**. Stop adding fea
 
 ## Who's doing what
 
+Team leader: **Owen Leung**.
+
 | Team | Part |
 |---|---|
 | Team 1 | Money trail tracker |
@@ -66,10 +68,18 @@ The starter notebook (`starter_notebook.ipynb` in the training download) runs in
 | `xrpl-detector`, blend of stage 1 and stage 2 (`submission_blend.csv`) | 65.9 | 91% | not recorded |
 | `xrpl-detector`, blend + 5% medium specialist (`submission_specialist.csv`) | 65.9 | not recorded | not recorded |
 | `xrpl-detector`, blend on Owen's Mac (Python 3.9.6, scikit-learn 1.6.1) | 66.5 | not recorded | not recorded |
-| **`xrpl-detector`, blend + mule network signal (`submission_mule.csv`, now the default), Owen's Mac** | **66.8** | 92% | 30% |
+| `xrpl-detector`, blend + mule network signal (`submission_mule.csv`), Owen's Mac | 66.8 | 92% | 30% |
+| `xrpl-detector`, mule + relay penalty 0.5 (`submission_mule_relay.csv`, now the default), Owen's Mac | 67.0 | 92% | 29% |
+| Owen's detector alone (`detector/`, `run.py`) | 64.3 | not recorded | not recorded |
+| Blend of team pipeline and Owen's detector, equal weights (`blend.py`) | 67.3 | not recorded | not recorded |
+| Blend, 0.65 / 0.35 | 67.6 | not recorded | not recorded |
+| Blend, 0.75 / 0.25 | 67.7 | not recorded | not recorded |
+| Blend, 0.75 / 0.25, with burst smoothing | 67.8 | not recorded | not recorded |
+| **Blend, 0.75 / 0.25, relay penalty on both, no smoothing (submitted, `outputs/final.csv`)** | **67.8** | not recorded | not recorded |
 
 - What the 65.4 run caught, from the site's breakdown: easy **40%** of 800, medium **10%** of 225, observable hard **0%** of 200, ambiguous **0%** of 25. That adds up to about 342 payments, a little under the ~363 implied by 29% recall, so check which cut-off the breakdown uses before comparing runs on it.
-- **Best run: 66.8** (blend + mule network signal, `submission_mule.csv`, now the default; made on Owen's Mac, Python 3.9). Same Mac's blend scored **66.5**, so the mule signal adds **+0.3**; the other +0.6 over 65.9 comes from library versions (Python 3.9.6 / scikit-learn 1.6.1 beat 3.14 / 1.9.1 here). **So the final upload should be made with the Mac's versions**, and the README must document them.
+- **Final submitted run: 67.8**, the blend of the team pipeline (75%) and Owen's detector (25%); see the top-level `README.md` and `REPORT.md`.
+- **Best team-pipeline run: 67.0** (mule + relay look-alike penalty 0.5). Before that: 66.8 (blend + mule network signal, `submission_mule.csv`, now the default; made on Owen's Mac, Python 3.9). Same Mac's blend scored **66.5**, so the mule signal adds **+0.3**; the other +0.6 over 65.9 comes from library versions (Python 3.9.6 / scikit-learn 1.6.1 beat 3.14 / 1.9.1 here). **So the final upload should be made with the Mac's versions**, and the README must document them.
 - Previous best: 65.9 (the blend). Reproduce with `python xrpl-detector/train_model.py` (about 20 min) then `python xrpl-detector/run_pipeline.py`, and upload `outputs/submission.csv`.
 - The two-stage ranker ranks the whole list better (score up 6.2), while its top 1% is slightly less clean (91% vs 94%). The top 1% can hold at most ~32% of the ~1,250 suspicious payments, so 29% recall is close to the ceiling.
 - **Scoring variants:** `run_pipeline.py` on the test data also writes `outputs/submission_stage1.csv` (stage-1 model alone, 65.6), `submission_stage2.csv` (two-stage ranker alone, 65.4) and `submission_blend.csv` (average rank of the two, 65.9). The blend was the default `probability` until the mule signal beat it, so `submission.csv`, the alerts and the case reports all use it; its values are mapped onto stage 2's score distribution, so they still read like probabilities and rank exactly like the 65.9 upload. In CV stage 2 helped medium and hard but hurt easy (easy AP 72.3 → 68.8), which is why mixing in stage 1 helps.
@@ -105,6 +115,9 @@ Replaces the pipeline's scoring model. Nothing downstream changes: `predict.py` 
 | File | What it is |
 |---|---|
 | `xrpl-detector/` | The pipeline: scoring (`aml_ranker/`), trails, alert ranking, graphs, case reports. See its README |
+| `detector/`, `run.py` | Owen's detector, the second model in the final blend |
+| `blend.py`, `third_model.py` | Rank blend of the prediction files; three-model variant (not submitted) |
+| `REPORT.md` | Method, results and limitations of the final entry |
 | `LICENSE`, `THIRD_PARTY.md` | MIT licence and the list of what we didn't write (for the ZIP) |
 | `.gitignore` | Keeps data, `dnd-env/` and `.env` (API keys) out of git |
 
